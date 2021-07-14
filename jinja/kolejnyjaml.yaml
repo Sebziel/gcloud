@@ -1,0 +1,16 @@
+imports:
+- path: template.jinja
+- path: network-template.jinja
+- path: subnetwork-temp.jinja
+
+resources:
+- name: training-deployment
+  type: template.jinja
+  properties:
+    instanceId: main
+    machineType: e2-medium
+    zone: europe-west4-a
+- name: moj-homepage-network
+  type: network-template.jinja
+- name: moj-homepage-subnetwork
+  type: subnetwork-temp.jinja

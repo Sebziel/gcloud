@@ -1,0 +1,7 @@
+resources:
+- type: compute.v1.subnetwork
+  name: test-subnetwork
+  properties:
+    network: $(ref.training-deployment-network.selfLink)
+    ipCidrRange: 10.0.0.0/24
+    region: europe-west4
