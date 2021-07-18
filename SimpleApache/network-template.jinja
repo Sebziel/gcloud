@@ -1,0 +1,14 @@
+resources:
+- type: compute.v1.network
+  name: simple-apache-deployment-network
+  properties:
+    autoCreateSubnetworks: false
+
+- name: my-homepage-firewall-rule
+  type: compute.v1.firewall
+  properties:
+    network: $(ref.simple-apache-deployment-network.selfLink)
+    sourceRanges: ["0.0.0.0/0"]
+    allowed:
+    - IPProtocol: TCP
+      ports: ["80", "22"] 

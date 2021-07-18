@@ -1,0 +1,16 @@
+imports:
+- path: vm.jinja
+- path: network-template.jinja
+- path: subnetwork-temp.jinja
+
+resources:
+- name: SimpleApacheDeployment
+  type: vm.jinja
+  properties:
+    instanceId: main
+    machineType: e2-medium
+    zone: europe-west4-a
+- name: my-homepage-network
+  type: network-template.jinja
+- name: my-homepage-subnetwork
+  type: subnetwork-temp.jinja

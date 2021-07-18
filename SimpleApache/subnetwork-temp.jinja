@@ -1,0 +1,7 @@
+resources:
+- type: compute.v1.subnetwork
+  name: simple-apache-deployment-subnetwork
+  properties:
+    network: $(ref.simple-apache-deployment-network.selfLink)
+    ipCidrRange: 10.0.0.0/24
+    region: europe-west4

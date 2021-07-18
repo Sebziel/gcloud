@@ -1,0 +1,28 @@
+{% set BASE_URL = 'https://www.googleapis.com/compute/v1' %}
+
+resources:
+- type: compute.v1.instance
+  name: simple-apache-deployment-instance
+  properties:
+    zone: {{ properties["zone"] }}
+    machineType: {{ BASE_URL}}/projects/{{ env["project"] }}/zones/{{ properties["zone"] }}/machineTypes/{{ properties["machineType"] }}
+    disks:
+    - deviceName: boot
+      type: PERSISTENT
+      boot: true
+      autoDelete: true
+      initializeParams:
+        sourceImage: {{ BASE_URL }}/projects/ubuntu-os-cloud/global/images/family/ubuntu-2010
+    networkInterfaces:
+    - subnetwork: $(ref.simple-apache-deployment-subnetwork.selfLink)
+      accessConfigs:
+      - name: External NAT
+        type: ONE_TO_ONE_NAT
+    metadata:
+      items:
+      - key: startup-script
+        value: |
+          #!/bin/bash
+          sudo apt-get update && sudo apt-get install apache2 -y
+          sudo echo "<!doctype html><html><body><h1>Succesfully deployed simple apache!</h1></body></html>" |
+          sudo tee /var/www/html/index.html
