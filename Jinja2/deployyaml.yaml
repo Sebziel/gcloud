@@ -1,9 +1,0 @@
-imports:
-- path: network-temp.jinja
-- path: subnetwork-temp.jinja
-
-resources:
-- name: moj-homepage-network
-  type: network-temp.jinja
-- name: moj-homepage-subnetwork
-  type: subnetwork-temp.jinja
