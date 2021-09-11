@@ -12,7 +12,7 @@ resources:
       boot: true
       autoDelete: true
       initializeParams:
-        sourceImage: {{ BASE_URL }}/projects/ubuntu-os-cloud/global/images/family/ubuntu-2010
+        sourceImage: {{ BASE_URL}}/projects/ubuntu-os-pro-cloud/global/images/ubuntu-pro-2004-focal-v20210720
     networkInterfaces:
     - subnetwork: $(ref.simple-apache-deployment-subnetwork.selfLink)
       accessConfigs:
