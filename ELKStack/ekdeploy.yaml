@@ -1,0 +1,16 @@
+imports:
+- path: ek.jinja
+- path: eknetwork.jinja
+- path: eksubnetwork.jinja
+
+resources:
+- name: ekdeploymentinstance
+  type: ek.jinja
+  properties:
+    instanceId: main
+    machineType: e2-medium
+    zone: europe-west4-a
+- name: ekdeploymentnetwork
+  type: eknetwork.jinja
+- name: ekdeploymentsubnetwork
+  type: eksubnetwork.jinja

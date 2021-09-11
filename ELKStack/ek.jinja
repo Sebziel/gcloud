@@ -1,0 +1,34 @@
+{% set BASE_URL = 'https://www.googleapis.com/compute/v1' %}
+
+resources:
+- type: compute.v1.instance
+  name: ek-deployment
+  properties:
+    zone: {{ properties["zone"] }}
+    machineType: {{ BASE_URL}}/projects/{{ env["project"] }}/zones/{{ properties["zone"] }}/machineTypes/{{ properties["machineType"] }}
+    disks:
+    - deviceName: boot
+      type: PERSISTENT
+      boot: true
+      autoDelete: true
+      initializeParams:
+        sourceImage: {{ BASE_URL }}/projects/ubuntu-os-cloud/global/images/family/ubuntu-2010
+    networkInterfaces:
+    - network: global/networks/default
+      accessConfigs:
+      - name: External NAT
+        type: ONE_TO_ONE_NAT
+    metadata:
+      items:
+      - key: startup-script
+        value: |
+          #!/bin/bash
+          sudo apt-get update
+          wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+          sudo apt-get install apt-transport-https
+          echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-7.x.list
+          sudo apt-get update && sudo apt-get install elasticsearch kibana
+          sudo systemctl enable elasticsearch.service
+          sudo systemctl start elasticsearch.service
+          sudo systemctl enable kibana.service
+          sudo systemctl start kibana.service
