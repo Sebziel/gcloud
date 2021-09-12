@@ -1,5 +1,7 @@
 Komenda
 gcloud compute instances describe instancewoaccess --zone=us-central1-a   --format='get(networkInterfaces[0].accessConfigs[0].natIP)' > /home/sebastian_c_zielinski/testfile.txt
+
+gcloud compute instances describe ek-deployment --zone=europe-west4-a --format='get(networkInterfaces[0].accessConfigs[0].natIP)' > /home/sebastian_c_zielinski/testfile.txt  #Działa
 działa tylko przy odpowiednich ustawieniach praw dostępu dla API vm'ki, trzeba znaleźć sposób na przekazaywanie tych dostepów i potencjalnie nadanie minimalnych wymaganych praw przez deployment managera. 
 
 obecnie skonfigurowaną vm'ke trzeba będzie dorzucić do odpowiedniego subnetworku, bo jeszcze nie zostąło to zrobione, sam network i subnetwork wyglada spoko chociaż jeszcze nie były testowane. 
