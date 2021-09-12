@@ -29,3 +29,8 @@ As an expected outcome, a simple html website with text "Succesfully deployed si
 In order to remove the deployment run below command in */SimpleApache catalog and confirm with an 'y'. 
 
 gcloud deployment-manager deployments delete sad
+
+#Possible issues:
+In case of issue with the OS image, make sure to check the current images list URI's as they may change acrros the time. 
+
+gcloud compute images list --uri

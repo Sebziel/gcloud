@@ -1,11 +1,11 @@
 imports:
-- path: ek.jinja
+- path: ekVM.jinja
 - path: eknetwork.jinja
 - path: eksubnetwork.jinja
 
 resources:
 - name: ekdeploymentinstance
-  type: ek.jinja
+  type: ekVM.jinja
   properties:
     instanceId: main
     machineType: e2-medium
