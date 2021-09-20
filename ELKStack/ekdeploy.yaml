@@ -2,6 +2,7 @@ imports:
 - path: ekVM.jinja
 - path: eknetwork.jinja
 - path: eksubnetwork.jinja
+- path: ekserviceaccount.jinja
 
 resources:
 - name: ekdeploymentinstance
@@ -14,3 +15,5 @@ resources:
   type: eknetwork.jinja
 - name: ekdeploymentsubnetwork
   type: eksubnetwork.jinja
+- name: ekserviceaccount
+  type: ekserviceaccount.jinja
