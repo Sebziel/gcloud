@@ -1,0 +1,31 @@
+{% set BASE_URL = 'https://www.googleapis.com/compute/v1' %}
+
+resources:
+- type: compute.v1.instance
+  name: kibana-deployment
+  properties:
+    zone: {{ properties["zone"] }}
+    machineType: {{ BASE_URL}}/projects/{{ env["project"] }}/zones/{{ properties["zone"] }}/machineTypes/{{ properties["machineType"] }}
+    disks:
+    - deviceName: boot
+      type: PERSISTENT
+      boot: true
+      autoDelete: true
+      initializeParams:
+        sourceImage: {{ BASE_URL }}/projects/ubuntu-os-pro-cloud/global/images/ubuntu-pro-2004-focal-v20210720
+    networkInterfaces:
+    - subnetwork: $(ref.ek-deployment-subnetwork.selfLink)
+      accessConfigs:
+      - name: External NAT
+        type: ONE_TO_ONE_NAT
+    serviceAccounts:
+    - email: $(ref.ekserviceaccount.email)
+      scopes: 
+      - "https://www.googleapis.com/auth/compute.readonly"
+    metadata:
+      items:
+      - key: startup-script
+        value: |
+          #!/bin/bash
+          git clone https://github.com/Sebziel/gcloud.git
+          ./gcloud/ELKStack/kibana.sh -x >> logfile.txt
