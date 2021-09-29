@@ -16,5 +16,7 @@ Additional logging was enable to help with the troubleshooting upon the startups
 ToDo:
 
 Pass the internal IP address in /etc/elasticsearch/elasticsearch.yml as a variable.
+
 Set up Kibana in a separate server. 
+
 Configure kibana to be set up with the elasticsearch. 
