@@ -3,10 +3,17 @@ imports:
 - path: eknetwork.jinja
 - path: eksubnetwork.jinja
 - path: ekserviceaccount.jinja
+- path: kibanaVM.jinja
 
 resources:
 - name: ekdeploymentinstance
   type: ekVM.jinja
+  properties:
+    instanceId: main
+    machineType: e2-medium
+    zone: europe-west4-a
+- name: kibanadeploymentinstance
+  type: kibanaVM.jinja
   properties:
     instanceId: main
     machineType: e2-medium
@@ -17,3 +24,4 @@ resources:
   type: eksubnetwork.jinja
 - name: ekserviceaccount
   type: ekserviceaccount.jinja
+  
