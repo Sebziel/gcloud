@@ -11,16 +11,22 @@ Most of the customizable variables are passed  from the yaml file into the parti
 The EK.sh contains installation and conifguration of elastisearch and Kibana, which is downloaded  
 Additional logging was enable to help with the troubleshooting upon the startupscript execution, the file is written into the root file /logife.txt
 
-BugFix for passing internal IP address as variable
+BugFix for passing internal IP address as variable:
 #EK.sh script was not working correctly, because of the job orders in deployelk.sh script. 
 #It created the deployment first, and then assigned a role to service account used by VM. This casued for the ELK config file to have empty host ip addres, making the Elastic component not working.
 
 ToDo:
 
-Pass the internal IP address in /etc/elasticsearch/elasticsearch.yml as a variable.
+Pass the internal IP address in /etc/elasticsearch/elasticsearch.yml as a variable. - DONE
+Set up Kibana in a separate server. - DONE
+Configure kibana to be set up with the elasticsearch. - IN progress
 
-Set up Kibana in a separate server. 
+#Some kibana.yml configuration seems not to be working correctly.
+#In particular discovery seed host list is not set up properly in elasticsearch VM.
+#Elasticsearch configuration have been adjusted in ek.sh script to be able to connect with Kibana.
+#Further kibana config requires adjustments for localhost ip addr and elastic ip addr, with variables gathered from gcloud commands
 
-Configure kibana to be set up with the elasticsearch. 
 
-Set up the startup script in GCP directly, most probably from a file, maybe in the google cloud storage 
+Use some markup for more cool READme file.
+Set up the startup script in GCP directly, most probably from a file, maybe in the google cloud storage.
+Set up the security features across ELK stack. -> Not GCP course related.

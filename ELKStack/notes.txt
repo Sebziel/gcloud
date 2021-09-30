@@ -1,0 +1,42 @@
+
+Lines to be changed
+
+#cluster.initial_master_nodes: ["node-1", "node-2"]
+#node.name: node-1
+#cluster.name: my-application
+#discovery.seed_hosts: ["host1", "host2"]
+
+
+#below working Lines
+sudo sed -i 's|#cluster.initial_master_nodes: \["node-1", "node-2"\]|cluster.initial_master_nodes: \["node-1"\]|' /etc/elasticsearch/elasticsearch.yml
+sudo sed -i 's|#node.name: node-1|node.name: node-1|' /etc/elasticsearch/elasticsearch.yml
+sudo sed -i 's|#discovery.seed_hosts: \["host1", "host2"\]|discovery.seed_hosts: \["host1"\]|' /etc/elasticsearch/elasticsearch.yml
+
+
+node name jeszcze trzeba ustawić
+
+# ---------------------------------- Network -----------------------------------
+#
+# By default Elasticsearch is only accessible on localhost. Set a different
+# address here to expose this node on the network:
+#
+network.host: 10.0.0.2
+#
+# By default Elasticsearch listens for HTTP traffic on the first free port it
+# finds starting at 9200. Set a specific HTTP port here:
+#
+#http.port: 9200
+#
+# For more information, consult the network module documentation.
+#
+# --------------------------------- Discovery ----------------------------------
+#
+# Pass an initial list of hosts to perform discovery when this node is started:
+# The default list of hosts is ["127.0.0.1", "[::1]"]
+#
+discovery.seed_hosts: ["node-1"]
+#
+# Bootstrap the cluster using an initial set of master-eligible nodes:
+#
+cluster.initial_master_nodes: ["node-1"]
+#
