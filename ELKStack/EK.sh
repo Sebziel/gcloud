@@ -11,7 +11,7 @@ VAR1=$(gcloud compute instances list --filter="NAME ~ ek-deployment" --format 'v
 sudo sed -i "s|#network.host: 192.168.0.1|network.host: $VAR1|" /etc/elasticsearch/elasticsearch.yml
 sudo sed -i 's|#cluster.initial_master_nodes: \["node-1", "node-2"\]|cluster.initial_master_nodes: \["node-1"\]|' /etc/elasticsearch/elasticsearch.yml
 sudo sed -i 's|#node.name: node-1|node.name: node-1|' /etc/elasticsearch/elasticsearch.yml
-sudo sed -i 's|#discovery.seed_hosts: \["host1", "host2"\]|discovery.seed_hosts: \["host1"\]|' /etc/elasticsearch/elasticsearch.yml
+sudo sed -i 's|#discovery.seed_hosts: \["host1", "host2"\]|discovery.seed_hosts: \["node-1"\]|' /etc/elasticsearch/elasticsearch.yml
 sudo systemctl enable elasticsearch.service
 sudo systemctl start elasticsearch.service
 
