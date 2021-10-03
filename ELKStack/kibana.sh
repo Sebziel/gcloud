@@ -9,6 +9,6 @@ sudo sleep 120
 LOCALIP=$(gcloud compute instances list --filter="NAME ~ kibana-deployment" --format 'value(INTERNAL_IP)')
 ELASTICIP=$(gcloud compute instances list --filter="NAME ~ ek-deployment" --format 'value(INTERNAL_IP)')
 sudo sed -i "s|#server.host: \"localhost\"|server.host: $LOCALIP|" /etc/kibana/kibana.yml
-sudo sed -i "s|#elasticsearch.hosts: \[\"http://localhost:9200\"\]|elasticsearch.hosts: \[\"$ELASTICIP:9200\"\]|" /etc/kibana/kibana.yml
+sudo sed -i "s|#elasticsearch.hosts: \[\"http://localhost:9200\"\]|elasticsearch.hosts: \[\"http://$ELASTICIP:9200\"\]|" /etc/kibana/kibana.yml
 sudo systemctl enable kibana.service
 sudo systemctl start kibana.service
